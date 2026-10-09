@@ -167,4 +167,21 @@ export class AnalyticsCollector {
       averageEngagementRate: Number(avgRate.toFixed(2)),
     };
   }
+
+  /**
+   * Retrieves chronological historical snapshots across all posts (§18.0 GET /analytics/history).
+   */
+  async getHistory(limit = 100) {
+    const supabase = createSupabaseServiceClient();
+
+    const { data, error } = await supabase
+      .from("analytics_snapshots")
+      .select("id, post_id, platform, snapshot_at, data, created_at")
+      .eq("account_id", this.accountId)
+      .order("snapshot_at", { ascending: false })
+      .limit(limit);
+
+    if (error || !data) return [];
+    return data;
+  }
 }

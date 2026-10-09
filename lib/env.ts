@@ -72,6 +72,9 @@ const clientEnvSchema = z.object({
 // Parse and export — throws ZodError at startup if invalid
 // ---------------------------------------------------------------------------
 function parseServerEnv() {
+  if (process.env.SKIP_ENV_VALIDATION === "1" || process.env.SKIP_ENV_VALIDATION === "true") {
+    return process.env as unknown as z.infer<typeof serverEnvSchema>;
+  }
   const result = serverEnvSchema.safeParse(process.env);
   if (!result.success) {
     const errors = result.error.issues
@@ -85,6 +88,13 @@ function parseServerEnv() {
 }
 
 function parseClientEnv() {
+  if (process.env.SKIP_ENV_VALIDATION === "1" || process.env.SKIP_ENV_VALIDATION === "true") {
+    return {
+      NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || "http://localhost:54321",
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "anon-key",
+      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    } as unknown as z.infer<typeof clientEnvSchema>;
+  }
   const result = clientEnvSchema.safeParse({
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,

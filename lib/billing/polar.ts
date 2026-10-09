@@ -65,6 +65,25 @@ export class BillingService {
   }
 
   /**
+   * Server-side entitlement gate — Phase 12.4 (Implementation Plan).
+   * Checks whether the account has a specific feature entitlement.
+   * NEVER use client-side state for entitlement authority (§12.4).
+   */
+  async hasEntitlement(feature: string): Promise<boolean> {
+    const supabase = createSupabaseServiceClient();
+
+    const { data } = await supabase
+      .from("billing_entitlements")
+      .select("enabled")
+      .eq("account_id", this.accountId)
+      .eq("feature", feature)
+      .eq("enabled", true)
+      .single();
+
+    return Boolean(data?.enabled);
+  }
+
+  /**
    * Processes a Polar webhook event with strict idempotency protection (§20.1).
    */
   static async processWebhookEvent(
