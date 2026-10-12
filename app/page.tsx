@@ -1,329 +1,351 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Sparkles,
-  Brain,
-  Send,
-  TrendingUp,
-  Zap,
-  Shield,
-  ArrowRight,
-  CheckCircle2,
-  BarChart3,
-  MessageSquare,
-} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Linker — Your Professional Presence Agent",
+  title: "Linker — LinkedIn Presence on Autopilot",
   description:
-    "Turn your work into professional momentum. Linker is your always-on AI agent that monitors your LinkedIn niche, surfaces opportunities, and crafts authentic content — so you grow without the grind.",
+    "Linker monitors your LinkedIn niche, surfaces real opportunities, and publishes authentic content in your voice — without you lifting a finger.",
 };
 
-const FEATURES = [
-  {
-    icon: Brain,
-    color: "text-violet-400",
-    bg: "bg-violet-500/10 border-violet-500/20",
-    glow: "rgba(139,92,246,0.15)",
-    title: "Professional Brain",
-    description:
-      "Linker builds a living model of your expertise, voice, goals, and audience — and uses it to make every post unmistakably yours.",
-  },
-  {
-    icon: Sparkles,
-    color: "text-blue-400",
-    bg: "bg-blue-500/10 border-blue-500/20",
-    glow: "rgba(59,130,246,0.15)",
-    title: "Opportunity Engine",
-    description:
-      "Monitors your niche 24/7 and surfaces only the signals worth acting on — so you never miss a trend, conversation, or moment.",
-  },
-  {
-    icon: Send,
-    color: "text-sky-400",
-    bg: "bg-sky-500/10 border-sky-500/20",
-    glow: "rgba(14,165,233,0.15)",
-    title: "Autonomous Publishing",
-    description:
-      "Drafts, critiques, schedules, and publishes with your approval — or runs fully autonomously in auto mode when you trust the system.",
-  },
-  {
-    icon: MessageSquare,
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
-    glow: "rgba(52,211,153,0.15)",
-    title: "Telegram Control Center",
-    description:
-      "Review drafts, approve posts, and get strategic nudges right inside Telegram — no dashboard required.",
-  },
-  {
-    icon: BarChart3,
-    color: "text-amber-400",
-    bg: "bg-amber-500/10 border-amber-500/20",
-    glow: "rgba(251,191,36,0.15)",
-    title: "Performance Intelligence",
-    description:
-      "Tracks what resonates and feeds learnings back into your Brain — so your content compounds over time.",
-  },
-  {
-    icon: Shield,
-    color: "text-rose-400",
-    bg: "bg-rose-500/10 border-rose-500/20",
-    glow: "rgba(251,113,133,0.15)",
-    title: "Never Fakes It",
-    description:
-      "Zero fabricated experiences. Zero hollow clichés. Every post is grounded in your real work and evidence.",
-  },
-];
-
-const STEPS = [
-  {
-    step: "01",
-    title: "Connect LinkedIn",
-    description:
-      "Authorize in seconds. Linker reads your profile, posts, and niche to build your Professional Brain.",
-  },
-  {
-    step: "02",
-    title: "Connect Telegram",
-    description:
-      "Your command line. Receive strategic updates, review drafts, and approve content right from your phone.",
-  },
-  {
-    step: "03",
-    title: "Linker Takes Over",
-    description:
-      "Your agent runs continuously — observing, identifying opportunities, drafting, and publishing while you focus on actual work.",
-  },
-];
-
-const STATS = [
-  { value: "10×", label: "Faster content creation" },
-  { value: "24/7", label: "Active niche monitoring" },
-  { value: "100%", label: "Your voice, always" },
-  { value: "0", label: "Fake posts ever" },
-];
+const LinkedInIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      {/* Background blobs */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-      >
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[700px] w-[700px] rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute top-[60%] -left-40 h-[500px] w-[500px] rounded-full bg-violet-600/8 blur-[100px]" />
-        <div className="absolute top-[30%] -right-40 h-[400px] w-[400px] rounded-full bg-indigo-600/8 blur-[100px]" />
-      </div>
+    <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)" }}>
 
-      {/* ── Nav ───────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 border-b border-white/5 backdrop-blur-xl bg-[#090d16]/70">
-        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-2.5">
-            <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 shadow-lg shadow-blue-500/30">
-              <Zap className="h-4 w-4 text-white" />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              Linker
-            </span>
-            <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border border-blue-500/30 bg-blue-500/10 text-blue-400">
-              AGENT
-            </span>
-          </div>
+      {/* ── Nav ── */}
+      <header style={{
+        borderBottom: "1px solid var(--border)",
+        position: "sticky",
+        top: 0,
+        background: "var(--bg)",
+        zIndex: 50,
+      }}>
+        <div style={{
+          maxWidth: 1080,
+          margin: "0 auto",
+          padding: "0 24px",
+          height: 60,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}>
+          <span style={{ fontWeight: 700, fontSize: 17, letterSpacing: "-0.02em" }}>
+            Linker
+          </span>
 
-          {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-            <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
-            <a href="#features" className="hover:text-white transition-colors">Features</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
+            <a href="#how" style={{ fontSize: 14, color: "var(--text-muted)", textDecoration: "none" }}>
+              How it works
+            </a>
+            <a href="#features" style={{ fontSize: 14, color: "var(--text-muted)", textDecoration: "none" }}>
+              Features
+            </a>
+            <a href="#pricing" style={{ fontSize: 14, color: "var(--text-muted)", textDecoration: "none" }}>
+              Pricing
+            </a>
+            <Link
+              href="/api/v1/auth/linkedin"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "8px 16px",
+                background: "var(--accent)",
+                color: "#fff",
+                borderRadius: 8,
+                fontSize: 14,
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              <LinkedInIcon />
+              Connect LinkedIn
+            </Link>
           </nav>
-
-          {/* CTA */}
-          <Link
-            href="/api/v1/auth/linkedin"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/25 transition-all duration-200 hover:shadow-blue-500/40 hover:-translate-y-0.5"
-          >
-            Get Started
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
         </div>
       </header>
 
-      {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pt-24 pb-20 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/25 bg-blue-500/8 text-blue-300 text-xs font-semibold mb-8 animate-pulse">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400" />
-          </span>
-          Professional Presence Agent — Now Live
-        </div>
+      {/* ── Hero ── */}
+      <section style={{ maxWidth: 1080, margin: "0 auto", padding: "96px 24px 80px" }}>
+        <div style={{ maxWidth: 680 }}>
+          <p style={{
+            fontSize: 13,
+            fontWeight: 600,
+            color: "var(--accent)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            marginBottom: 20,
+          }}>
+            LinkedIn Presence Agent
+          </p>
 
-        {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] text-white mb-6">
-          Turn your work into{" "}
-          <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">
-            professional momentum
-          </span>
-        </h1>
+          <h1 style={{
+            fontSize: "clamp(38px, 5vw, 60px)",
+            fontWeight: 700,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+            marginBottom: 24,
+            color: "var(--text)",
+          }}>
+            Your LinkedIn,<br />
+            running on autopilot.
+          </h1>
 
-        {/* Sub */}
-        <p className="mx-auto max-w-2xl text-lg sm:text-xl text-slate-400 leading-relaxed mb-10">
-          Linker is your always-on LinkedIn agent. It monitors your niche,
-          surfaces the right opportunities, and crafts authentic content in your
-          voice — so you grow without the grind.
-        </p>
+          <p style={{
+            fontSize: 18,
+            color: "var(--text-muted)",
+            lineHeight: 1.65,
+            marginBottom: 40,
+            maxWidth: 520,
+          }}>
+            Linker watches your niche around the clock, finds the moments worth
+            posting about, writes in your voice, and publishes — with or without
+            you in the loop.
+          </p>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/api/v1/auth/linkedin"
-            className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-base shadow-2xl shadow-blue-500/30 transition-all duration-200 hover:shadow-blue-500/50 hover:-translate-y-1"
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-            Continue with LinkedIn
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          <a
-            href="#how-it-works"
-            className="flex items-center gap-2 px-7 py-3.5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-medium text-base transition-all duration-200"
-          >
-            See how it works
-          </a>
-        </div>
-
-        {/* Trust note */}
-        <p className="mt-5 text-xs text-slate-500">
-          No email. No password. Authorize with LinkedIn — get your agent running in under 2 minutes.
-        </p>
-
-        {/* Stats strip */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/5 bg-white/5">
-          {STATS.map((s) => (
-            <div
-              key={s.label}
-              className="bg-[#0c1220]/80 px-6 py-8 flex flex-col items-center gap-1"
+          <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+            <Link
+              href="/api/v1/auth/linkedin"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "12px 22px",
+                background: "var(--accent)",
+                color: "#fff",
+                borderRadius: 10,
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
             >
-              <span className="text-3xl font-extrabold bg-gradient-to-br from-blue-300 to-violet-300 bg-clip-text text-transparent">
-                {s.value}
-              </span>
-              <span className="text-xs text-slate-500 text-center">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── How It Works ──────────────────────────────────── */}
-      <section id="how-it-works" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="text-center mb-14">
-          <span className="inline-flex px-3 py-1 rounded-full border border-violet-500/25 bg-violet-500/8 text-violet-300 text-xs font-semibold mb-4">
-            HOW IT WORKS
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Up and running in{" "}
-            <span className="text-blue-400">three steps</span>
-          </h2>
-        </div>
-
-        <div className="relative grid md:grid-cols-3 gap-6">
-          {/* connector line */}
-          <div className="hidden md:block absolute top-10 left-[33%] right-[33%] h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-
-          {STEPS.map((s) => (
-            <div
-              key={s.step}
-              className="glass-panel glass-panel-hover rounded-2xl p-7 flex flex-col gap-4"
+              <LinkedInIcon />
+              Get started — it&apos;s free
+            </Link>
+            <a
+              href="#how"
+              style={{
+                fontSize: 14,
+                color: "var(--text-muted)",
+                textDecoration: "none",
+                borderBottom: "1px solid var(--border)",
+                paddingBottom: 1,
+              }}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600/30 to-violet-600/30 border border-blue-500/20">
-                <span className="text-base font-extrabold text-blue-300">{s.step}</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{s.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+              See how it works →
+            </a>
+          </div>
 
-      {/* ── Features ──────────────────────────────────────── */}
-      <section id="features" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="text-center mb-14">
-          <span className="inline-flex px-3 py-1 rounded-full border border-blue-500/25 bg-blue-500/8 text-blue-300 text-xs font-semibold mb-4">
-            WHAT LINKER DOES
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Everything your executive presence needs
-          </h2>
-          <p className="mt-3 text-slate-400 max-w-xl mx-auto text-base">
-            Linker is not a content scheduler. It&apos;s a professional presence
-            engine that thinks, observes, and acts on your behalf.
+          <p style={{ marginTop: 16, fontSize: 13, color: "var(--text-faint)" }}>
+            No email. No password. Just your LinkedIn — takes under 2 minutes.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEATURES.map((f) => (
+        {/* Stats row */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1,
+          marginTop: 72,
+          background: "var(--border-subtle)",
+          border: "1px solid var(--border)",
+          borderRadius: 12,
+          overflow: "hidden",
+        }}>
+          {[
+            { value: "10×", label: "faster than manual posting" },
+            { value: "24/7", label: "niche monitoring" },
+            { value: "100%", label: "your voice, always" },
+            { value: "0", label: "fake posts, ever" },
+          ].map((s) => (
             <div
-              key={f.title}
-              className="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col gap-4 group"
+              key={s.label}
+              style={{
+                background: "var(--bg-subtle)",
+                padding: "28px 24px",
+                textAlign: "center",
+              }}
             >
-              <div
-                className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border ${f.bg}`}
-              >
-                <f.icon className={`h-5 w-5 ${f.color}`} />
+              <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 4 }}>
+                {s.value}
               </div>
-              <div>
-                <h3 className="font-bold text-white mb-1.5">{f.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  {f.description}
-                </p>
-              </div>
+              <div style={{ fontSize: 13, color: "var(--text-faint)" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Pricing ───────────────────────────────────────── */}
-      <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="text-center mb-14">
-          <span className="inline-flex px-3 py-1 rounded-full border border-emerald-500/25 bg-emerald-500/8 text-emerald-300 text-xs font-semibold mb-4">
-            PRICING
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Start free. Upgrade when you&apos;re ready.
-          </h2>
-        </div>
+      {/* ── Divider ── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* Free */}
-          <div className="glass-panel rounded-2xl p-8 flex flex-col gap-5">
-            <div>
-              <p className="text-sm font-semibold text-slate-400 mb-1">Free</p>
-              <div className="flex items-end gap-1">
-                <span className="text-4xl font-extrabold text-white">$0</span>
-                <span className="text-slate-400 pb-1">/month</span>
+      {/* ── How it works ── */}
+      <section id="how" style={{ maxWidth: 1080, margin: "0 auto", padding: "80px 24px" }}>
+        <p style={{
+          fontSize: 13,
+          fontWeight: 600,
+          color: "var(--text-muted)",
+          letterSpacing: "0.07em",
+          textTransform: "uppercase",
+          marginBottom: 40,
+        }}>
+          How it works
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48 }}>
+          {[
+            {
+              n: "1",
+              title: "Connect LinkedIn",
+              body: "Authorize in 30 seconds. Linker reads your profile, past posts, and niche to build a model of who you are professionally.",
+            },
+            {
+              n: "2",
+              title: "Connect Telegram",
+              body: "Your command line. Approve drafts, get strategic nudges, and control your agent — all from your phone, no dashboard needed.",
+            },
+            {
+              n: "3",
+              title: "Linker runs for you",
+              body: "Your agent monitors, drafts, and publishes continuously. You focus on the actual work. Linker handles the presence.",
+            },
+          ].map((step) => (
+            <div key={step.n}>
+              <div style={{
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                background: "var(--bg-raised)",
+                border: "1px solid var(--border)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 13,
+                fontWeight: 700,
+                color: "var(--text-muted)",
+                marginBottom: 16,
+              }}>
+                {step.n}
               </div>
-              <p className="text-sm text-slate-500 mt-1">
-                Get started with no credit card.
+              <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 10, letterSpacing: "-0.01em" }}>
+                {step.title}
+              </h3>
+              <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.65 }}>
+                {step.body}
               </p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <ul className="space-y-2.5 text-sm text-slate-300">
+      {/* ── Divider ── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ── Features ── */}
+      <section id="features" style={{ maxWidth: 1080, margin: "0 auto", padding: "80px 24px" }}>
+        <p style={{
+          fontSize: 13,
+          fontWeight: 600,
+          color: "var(--text-muted)",
+          letterSpacing: "0.07em",
+          textTransform: "uppercase",
+          marginBottom: 40,
+        }}>
+          What Linker does
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--border-subtle)" }}>
+          {[
+            {
+              title: "Professional Brain",
+              body: "Linker builds a living model of your expertise, voice, audience, and goals — and uses it to make every post unmistakably yours. Not a generic AI voice. Yours.",
+            },
+            {
+              title: "Opportunity Engine",
+              body: "Monitors your niche around the clock and surfaces only the signals worth acting on. Trending conversations, relevant discussions, moments your audience cares about.",
+            },
+            {
+              title: "Autonomous Publishing",
+              body: "Drafts, critiques, schedules, and publishes with your approval — or runs fully autonomously when you trust the system. You control how much is on autopilot.",
+            },
+            {
+              title: "Telegram Control Center",
+              body: "No dashboard required. Review drafts, approve posts, and steer your agent's direction right inside Telegram. Works from anywhere.",
+            },
+            {
+              title: "Performance Intelligence",
+              body: "Tracks what resonates and feeds that back into your Brain. Your content compounds over time — each week better than the last.",
+            },
+            {
+              title: "Zero fabrication, ever",
+              body: "No invented achievements. No hollow buzzwords. Every post is grounded in your actual work and real evidence. Authentic or nothing.",
+            },
+          ].map((f) => (
+            <div
+              key={f.title}
+              style={{
+                background: "var(--bg)",
+                padding: "36px 36px",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <h3 style={{
+                fontSize: 16,
+                fontWeight: 600,
+                marginBottom: 10,
+                letterSpacing: "-0.01em",
+              }}>
+                {f.title}
+              </h3>
+              <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.7 }}>
+                {f.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Divider ── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ── Pricing ── */}
+      <section id="pricing" style={{ maxWidth: 1080, margin: "0 auto", padding: "80px 24px" }}>
+        <p style={{
+          fontSize: 13,
+          fontWeight: 600,
+          color: "var(--text-muted)",
+          letterSpacing: "0.07em",
+          textTransform: "uppercase",
+          marginBottom: 40,
+        }}>
+          Pricing
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 760 }}>
+          {/* Free */}
+          <div style={{
+            border: "1px solid var(--border)",
+            borderRadius: 12,
+            padding: 32,
+          }}>
+            <p style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 8 }}>Free</p>
+            <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: "-0.03em", marginBottom: 4 }}>$0</div>
+            <p style={{ fontSize: 13, color: "var(--text-faint)", marginBottom: 28 }}>No credit card required</p>
+
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
               {[
                 "Professional Brain setup",
                 "Opportunity scanning",
                 "Draft generation",
                 "Telegram integration",
-                "3 scheduled posts/month",
+                "3 scheduled posts / month",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                <li key={item} style={{ fontSize: 14, color: "var(--text-muted)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                  <span style={{ color: "var(--text-faint)", marginTop: 1 }}>—</span>
                   {item}
                 </li>
               ))}
@@ -331,43 +353,61 @@ export default function LandingPage() {
 
             <Link
               href="/api/v1/auth/linkedin"
-              className="mt-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all"
+              style={{
+                display: "block",
+                textAlign: "center",
+                padding: "10px 0",
+                border: "1px solid var(--border)",
+                borderRadius: 8,
+                fontSize: 14,
+                fontWeight: 600,
+                color: "var(--text)",
+                textDecoration: "none",
+              }}
             >
               Get started free
             </Link>
           </div>
 
           {/* Pro */}
-          <div className="relative rounded-2xl p-8 flex flex-col gap-5 bg-gradient-to-br from-blue-600/20 to-violet-600/20 border border-blue-500/30 shadow-2xl shadow-blue-500/10">
-            <div className="absolute -top-3 left-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 text-white text-[11px] font-bold shadow-lg">
-                <Sparkles className="h-3 w-3" /> MOST POPULAR
-              </span>
+          <div style={{
+            border: "1px solid var(--accent)",
+            borderRadius: 12,
+            padding: 32,
+            position: "relative",
+          }}>
+            <div style={{
+              position: "absolute",
+              top: -11,
+              left: 20,
+              background: "var(--accent)",
+              color: "#fff",
+              fontSize: 11,
+              fontWeight: 700,
+              padding: "3px 10px",
+              borderRadius: 20,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+            }}>
+              Most popular
             </div>
 
-            <div>
-              <p className="text-sm font-semibold text-slate-400 mb-1">Linker Pro</p>
-              <div className="flex items-end gap-1">
-                <span className="text-4xl font-extrabold text-white">$19</span>
-                <span className="text-slate-400 pb-1">/month</span>
-              </div>
-              <p className="text-sm text-slate-500 mt-1">
-                Full autonomous agent. Unlimited growth.
-              </p>
-            </div>
+            <p style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 8 }}>Linker Pro</p>
+            <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: "-0.03em", marginBottom: 4 }}>$19</div>
+            <p style={{ fontSize: 13, color: "var(--text-faint)", marginBottom: 28 }}>per month</p>
 
-            <ul className="space-y-2.5 text-sm text-slate-200">
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
               {[
                 "Everything in Free",
                 "Autonomous publishing mode",
                 "Unlimited scheduled posts",
                 "Advanced opportunity engine",
                 "Full content analytics",
-                "MCP access",
                 "Priority Telegram updates",
+                "MCP access",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                <li key={item} style={{ fontSize: 14, color: "var(--text-muted)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                  <span style={{ color: "var(--text-faint)", marginTop: 1 }}>—</span>
                   {item}
                 </li>
               ))}
@@ -375,73 +415,85 @@ export default function LandingPage() {
 
             <Link
               href="/api/v1/auth/linkedin"
-              className="mt-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/30 transition-all duration-200 hover:shadow-blue-500/50"
+              style={{
+                display: "block",
+                textAlign: "center",
+                padding: "10px 0",
+                background: "var(--accent)",
+                borderRadius: 8,
+                fontSize: 14,
+                fontWeight: 600,
+                color: "#fff",
+                textDecoration: "none",
+              }}
             >
               Start with Pro
-              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Final CTA ─────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="relative glass-panel rounded-3xl overflow-hidden p-10 sm:p-16 text-center">
-          {/* Background glow */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-violet-600/10" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-blue-500/15 blur-3xl" />
-          </div>
+      {/* ── Divider ── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/25 bg-blue-500/8 text-blue-300 text-xs font-semibold mb-6">
-            <TrendingUp className="h-3 w-3" />
-            Your professional presence is waiting
-          </div>
-
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            You do the work.{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Linker tells the world.
-            </span>
+      {/* ── Final CTA ── */}
+      <section style={{ maxWidth: 1080, margin: "0 auto", padding: "96px 24px" }}>
+        <div style={{ maxWidth: 560 }}>
+          <h2 style={{
+            fontSize: "clamp(28px, 4vw, 44px)",
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.15,
+            marginBottom: 20,
+          }}>
+            You do the work.<br />
+            Linker tells the world.
           </h2>
-
-          <p className="text-slate-400 text-lg max-w-lg mx-auto mb-8">
-            Join professionals who stopped grinding LinkedIn and started letting
-            their agent do the momentum-building.
+          <p style={{ fontSize: 17, color: "var(--text-muted)", lineHeight: 1.65, marginBottom: 36 }}>
+            Stop grinding LinkedIn. Connect once and let your agent build
+            your presence — every day, in your voice, without the noise.
           </p>
-
           <Link
             href="/api/v1/auth/linkedin"
-            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-base shadow-2xl shadow-blue-500/30 transition-all duration-200 hover:shadow-blue-500/50 hover:-translate-y-1"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "13px 24px",
+              background: "var(--accent)",
+              color: "#fff",
+              borderRadius: 10,
+              fontSize: 15,
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-            Activate Linker Agent
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <LinkedInIcon />
+            Connect LinkedIn — free
           </Link>
-
-          <p className="mt-4 text-xs text-slate-600">
-            Free tier available · No credit card required · Cancel anytime
+          <p style={{ marginTop: 12, fontSize: 13, color: "var(--text-faint)" }}>
+            Free plan available · No credit card · Cancel anytime
           </p>
         </div>
       </section>
 
-      {/* ── Footer ────────────────────────────────────────── */}
-      <footer className="border-t border-white/5 py-10">
-        <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-600">
-          <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-to-br from-blue-500 to-violet-600">
-              <Zap className="h-3.5 w-3.5 text-white" />
-            </div>
-            <span className="font-semibold text-slate-400">Linker</span>
-            <span className="text-slate-700">·</span>
-            <span>Professional Presence Agent</span>
-          </div>
-          <div className="flex items-center gap-5">
-            <span>© 2026 Linker</span>
-            <a href="#" className="hover:text-slate-400 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-slate-400 transition-colors">Terms</a>
+      {/* ── Footer ── */}
+      <footer style={{ borderTop: "1px solid var(--border)", padding: "28px 0" }}>
+        <div style={{
+          maxWidth: 1080,
+          margin: "0 auto",
+          padding: "0 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          fontSize: 13,
+          color: "var(--text-faint)",
+        }}>
+          <span style={{ fontWeight: 600, color: "var(--text-muted)" }}>Linker</span>
+          <div style={{ display: "flex", gap: 24 }}>
+            <span>© 2026</span>
+            <a href="#" style={{ color: "inherit", textDecoration: "none" }}>Privacy</a>
+            <a href="#" style={{ color: "inherit", textDecoration: "none" }}>Terms</a>
           </div>
         </div>
       </footer>

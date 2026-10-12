@@ -11,7 +11,7 @@ import { logAudit } from "@/lib/audit/logger";
 import { verifyCsrf } from "@/lib/security/csrf";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import type { Json } from "@/lib/db/types";
+import type { Database, Json } from "@/lib/db/types";
 
 const updateProjectSchema = z.object({
   name: z.string().optional(),
@@ -66,7 +66,7 @@ export async function PATCH(
 
     const supabase = createSupabaseServiceClient();
 
-    const updatePayload: Record<string, unknown> = {
+    const updatePayload: Database["public"]["Tables"]["projects"]["Update"] = {
       updated_at: new Date().toISOString(),
     };
 
@@ -81,7 +81,7 @@ export async function PATCH(
 
     const { error } = await supabase
       .from("projects")
-      .update(updatePayload as any)
+      .update(updatePayload)
       .eq("id", id)
       .eq("account_id", auth.context.accountId);
 

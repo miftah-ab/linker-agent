@@ -32,15 +32,6 @@ const PROTECTED_ROUTES = [
   "/api/v1/mcp",
 ];
 
-// Public routes — no auth required
-const _PUBLIC_ROUTES = [
-  "/",
-  "/auth",
-  "/api/v1/auth",
-  "/api/v1/telegram/webhook",
-  "/api/v1/billing/webhook",
-];
-
 // Allowlisted post-auth redirect paths (§55 — prevent open redirects)
 const ALLOWED_REDIRECT_PATHS = [
   "/dashboard",
