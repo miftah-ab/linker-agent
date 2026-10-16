@@ -14,22 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 12.8.1
-
       - name: Setup Node.js 24 LTS
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Typecheck
-        run: pnpm exec tsc --noEmit
+        run: npx tsc --noEmit
 
       - name: Run Test Suite
-        run: pnpm test
+        run: npm test
