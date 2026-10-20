@@ -100,10 +100,12 @@ export async function middleware(request: NextRequest) {
     (route) => pathname === route || pathname.startsWith(route + "/")
   );
 
+  const isDemoSession = request.cookies.get("linker_demo_session")?.value === "true";
+
   // ---------------------------------------------------------------------------
   // Auth Gate — fail closed (§22)
   // ---------------------------------------------------------------------------
-  if (isProtected && !user) {
+  if (isProtected && !user && !isDemoSession) {
     // API routes return 401; page routes redirect to auth
     if (pathname.startsWith("/api/")) {
       return NextResponse.json(

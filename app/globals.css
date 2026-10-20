@@ -8,29 +8,49 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
+  --card: #0f172a;
+  --card-border: rgba(148, 163, 184, 0.12);
   --primary: #0a66c2;
   --primary-hover: #004182;
+  --primary-glow: rgba(10, 102, 194, 0.25);
   --accent: #0a66c2;
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
-  color: #0f172a;
+  height: 100%;
 }
 
 body {
-  background-color: #ffffff;
-  color: #0f172a;
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+
+/* Glassmorphism styling for dashboard panels */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+}
+
+.glass-panel-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 12px 40px 0 rgba(10, 102, 194, 0.2);
+  transform: translateY(-1px);
+}
+
+.glow-pill {
+  box-shadow: 0 0 15px -2px var(--primary-glow);
 }
