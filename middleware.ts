@@ -51,6 +51,18 @@ export function isAllowedRedirectPath(path: string): boolean {
 }
 
 export async function middleware(request: NextRequest) {
+  const { pathname, searchParams } = request.nextUrl;
+
+  // If Supabase redirects auth code to root / or any page instead of callback, forward it
+  if (searchParams.has("code") && !pathname.startsWith("/api/v1/auth/callback")) {
+    const code = searchParams.get("code")!;
+    const next = searchParams.get("next") || "/dashboard";
+    const callbackUrl = new URL("/api/v1/auth/callback", request.url);
+    callbackUrl.searchParams.set("code", code);
+    callbackUrl.searchParams.set("next", next);
+    return NextResponse.redirect(callbackUrl);
+  }
+
   let response = NextResponse.next({
     request,
   });
